@@ -1,61 +1,74 @@
-from Node import NodeLS as Node
+from Node import Node, DisjointSets
+
 
 class DSLinkedList:
     def __init__(self):
+        self.nodes = {}
         self.sets = {}
 
     def make_set(self, data):
-        if data not in self.sets:
-            node = Node(data)
-            self.sets[data] = node
+        node = Node(data)
+        self.nodes[data] = node
+        a_set = DisjointSets(node)
+        self.sets[data] = a_set
 
     def find(self, data):
-        node = self.sets[data]
-        return node.root.data  # Restituisce il "capo" della lista
+        if data not in self.nodes:
+            return None
+        node = self.nodes[data]
+        return node.root
 
     def union(self, data1, data2):
-        node1 = self.sets[data1]
-        node2 = self.sets[data2]
-
         # Trova i rappresentanti di ciascun insieme
-        root1 = node1.root
-        root2 = node2.root
+        root1 = self.find(data1)
+        root2 = self.find(data2)
+
+        set1 = self.sets[root1.data]
+        set2 = self.sets[root2.data]
 
         # Se appartengono già allo stesso insieme, non fare nulla
-        if root1 == root2:
+        if root1 == root2 or not root1 or not root2:
             return
 
-        root1.tail.next = root2  # Collegamento della lista
+        # Collegamento delle liste
+        set1.tail.next = root2
+
+        # Aggiustiamo prima lista
+
 
         # Aggiustiamo seconda lista
-        current = root2
-        while current is not None:
+        current = set2.root
+        while current:
             current.root = root1
+            if current.next is None:
+                set1.tail = current
             current = current.next
 
-        # Aggiustiamo la prima lista
-        newTail = root2.tail
-        current1 = root1
-        while current1 is not root2:
-            current1.tail = newTail
-            current1 = current1.next
+        # Delete second list
+        del self.sets[root2.data]
+
 
 # Esempio di utilizzo
 ds = DSLinkedList()
 for i in range(10):
     ds.make_set(i)
 
-ds.union(0, 1)  # Unisce gli insiemi contenenti 1 e 2
-# ds.union(2, 3)  # Unisce gli insiemi contenenti 3 e 4
-ds.union(1, 3)  # Unisce gli insiemi contenenti 2 (che include anche 1) e 3 (che include anche 4)
-ds.union(2, 5)
-ds.union(4, 6)
-ds.union(7, 8)
-
-x = ds.sets
+ds.union(0, 1)
+ds.union(2, 3)
+ds.union(1, 3)
+#ds.union(9, 8)
+#ds.union(4, 5)
+#ds.union(7, 6)
+#ds.union(5, 2)
 
 for i in range(10):
-    if x[i].next is None:
-        print(x[i].data, x[i].root.data, "-", x[i].tail.data)
+    if i in ds.sets:
+        x = ds.sets[i].root
+        print("r: " + str(ds.sets[i].root.data) + " t:" + str(ds.sets[i].tail.data))
+        while x is not None:
+            print(x.data)
+            x = x.next
+        print("---")
     else:
-        print(x[i].data, x[i].root.data, x[i].next.data, x[i].tail.data)
+        print("Deleted")
+        print("---")
