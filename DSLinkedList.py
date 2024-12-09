@@ -1,11 +1,6 @@
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.parent = self  # Il capo iniziale è se stesso
-        self.next = None  # Puntatore al prossimo elemento nella lista concatenata
-        self.tail = self  # Puntatore alla coda della lista
+from Node import NodeLS as Node
 
-class DisjointSetLinkedList:
+class DSLinkedList:
     def __init__(self):
         self.sets = {}
 
@@ -41,7 +36,7 @@ class DisjointSetLinkedList:
             current = current.next
 
 # Esempio di utilizzo
-ds = DisjointSetLinkedList()
+ds = DSLinkedList()
 ds.make_set(1)
 ds.make_set(2)
 ds.make_set(3)
