@@ -42,6 +42,16 @@ class DSLinkedList:
         # Delete second set
         del self.sets[root2.data]
 
+    def print_sets(self):
+        for key, disjoint_set in self.sets.items():
+            print(f"Set Root: {disjoint_set.root.data}, Tail: {disjoint_set.tail.data}")
+            current = disjoint_set.root
+            members = []
+            while current:
+                members.append(current.data)
+                current = current.next
+            print("Members:", ", ".join(map(str, members)))
+            print("---")
 
 # Debug
 ds = DSLinkedList()
@@ -56,14 +66,4 @@ ds.union(4, 5)
 ds.union(7, 6)
 ds.union(5, 2)
 
-for i in range(10):
-    if i in ds.sets:
-        x = ds.sets[i].root
-        print("r: " + str(ds.sets[i].root.data) + " t:" + str(ds.sets[i].tail.data))
-        while x is not None:
-            print(x.data)
-            x = x.next
-        print("---")
-    else:
-        print("Deleted")
-        print("---")
+ds.print_sets()
