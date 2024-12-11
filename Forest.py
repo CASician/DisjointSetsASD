@@ -30,6 +30,7 @@ class DSForest:
             print(f"Rappresentante: {root} -> Membri: {members}")
 
 # Esempio di utilizzo
+"""
 ds = DSForest()
 for i in range(10):
     ds.make_set(i)
@@ -44,4 +45,4 @@ ds.union(5, 2)
 ds.union(9,6)
 
 ds.print_sets()
-
+"""

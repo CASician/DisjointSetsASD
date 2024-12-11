@@ -54,6 +54,7 @@ class DSLinkedList:
             print("---")
 
 # Debug
+"""
 ds = DSLinkedList()
 for i in range(10):
     ds.make_set(i)
@@ -67,3 +68,4 @@ ds.union(7, 6)
 ds.union(5, 2)
 
 ds.print_sets()
+"""
