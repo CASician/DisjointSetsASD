@@ -1,6 +1,7 @@
 from DSLinkedList import DSLinkedList
 from DSLinkedListWE import DSLinkedListWE
 from Forest import DSForest
+from timeit import default_timer as timer
 
 
 class Graph:
@@ -29,12 +30,12 @@ class Graph:
         for node in self.graph:
             ds.make_set(node)
         for edge in self.edges():
-            start = timer.getTime()
+            start = timer()
             node1, node2 = edge
             ds.union(node1, node2)
-            end = timer.getTime()
-            time[edge] = end - start
-        ds.print_sets()
+            end = timer()
+            self.ex_time.append(round(end - start, 9))
+        #ds.print_sets()
 
 
     def print(self):
