@@ -7,6 +7,7 @@ class Graph:
     def __init__(self):
         self.graph = {}
         self.edges_list = set()  # Usare un set per evitare duplicati
+        self.ex_time = []
 
     def add_node(self, node):
         if node not in self.graph:
@@ -28,8 +29,11 @@ class Graph:
         for node in self.graph:
             ds.make_set(node)
         for edge in self.edges():
+            start = timer.getTime()
             node1, node2 = edge
             ds.union(node1, node2)
+            end = timer.getTime()
+            time[edge] = end - start
         ds.print_sets()
 
 
