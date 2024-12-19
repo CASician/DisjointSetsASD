@@ -35,7 +35,6 @@ class Graph:
             ds.union(node1, node2)
             end = timer()
             self.ex_time.append(round(end - start, 9))
-        #ds.print_sets()
 
 
     def print(self):
