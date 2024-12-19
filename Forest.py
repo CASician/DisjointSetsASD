@@ -29,7 +29,7 @@ class DSForest:
         for root, members in sets.items():
             print(f"Rappresentante: {root} -> Membri: {members}")
 
-# Esempio di utilizzo
+# Debug
 """
 ds = DSForest()
 for i in range(10):

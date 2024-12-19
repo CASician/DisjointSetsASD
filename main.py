@@ -11,8 +11,8 @@ from Forest import DSForest
 from Graph import Graph
 
 
-N = 1000000     # num of vertices
-V = 700000        # num of edges
+N = 1000     # num of vertices
+V = 500        # num of edges
 
 
 def correct(a, b, c):
@@ -102,14 +102,14 @@ for i in range(3):
     ds_we = DSLinkedListWE()
     ds_wf = DSForest()
 
-    #gg[i].findCC(ds)
-    #gg1[i].findCC(ds_we)
+    gg[i].findCC(ds)
+    gg1[i].findCC(ds_we)
     gg2[i].findCC(ds_wf)
 
 
 # print(min(g.ex_time), max(g.ex_time))
-#plot_times_w_ex(gg[0].ex_time, gg[1].ex_time, gg[2].ex_time)
-#plot_times_w_log(gg1[0].ex_time, gg1[1].ex_time, gg1[2].ex_time)
+plot_times_w_ex(gg[0].ex_time, gg[1].ex_time, gg[2].ex_time)
+plot_times_w_log(gg1[0].ex_time, gg1[1].ex_time, gg1[2].ex_time)
 plot_times_w_log(gg2[0].ex_time, gg2[1].ex_time, gg2[2].ex_time)
 
 #total_time = sum(g.ex_time)

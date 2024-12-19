@@ -43,6 +43,7 @@ class Graph:
 
 
 """
+# Debug
 g = Graph()
 for i in range(5):
     g.add_node(i)
